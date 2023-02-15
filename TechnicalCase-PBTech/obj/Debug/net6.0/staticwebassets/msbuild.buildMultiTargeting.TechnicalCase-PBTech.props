@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TechnicalCase-PBTech.props" />
+</Project>
