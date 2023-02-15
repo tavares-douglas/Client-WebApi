@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TechnicalCase_PBTech.Controllers
@@ -7,18 +8,6 @@ namespace TechnicalCase_PBTech.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {   
-        public static List<Client> clients = new List<Client>
-        {
-           new Client
-           {
-                Name = "Douglas",
-                Email = "douglas@outlook.com"
-           },
-           new Client {
-                Name = "Ana Julia",
-                Email = "anajulia@outlook.com"
-           }
-        };
         private readonly DataContext _context;
  
         public ClientController(DataContext context)
@@ -35,7 +24,7 @@ namespace TechnicalCase_PBTech.Controllers
         [HttpGet("{Email}")]
         public async Task<ActionResult<List<Client>>> Get(String Email)
         {
-            var client = clients.Find(client => client.Email == Email);
+            var client = await _context.Clients.FindAsync(Email);
             if (client == null)
                 return BadRequest("Client not found.");
             return Ok(client);
@@ -44,35 +33,39 @@ namespace TechnicalCase_PBTech.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Client>>> AddClient(Client client)
         {
-            clients.Add(client);
-            return Ok(clients);
+            _context.Clients.Add(client);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Clients.ToListAsync());
         }
 
         [HttpPut]
         public async Task<ActionResult<List<Client>>> UpdateClient(Client request)
         {
-            var client = clients.Find(client => client.Email == request.Email);
+            var client = await _context.Clients.FindAsync(request.Email);
             if (client == null)
                 return BadRequest("Client not found.");
 
             client.Name = request.Name;
             client.Email = request.Email;
 
-            return Ok(client);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Clients.ToListAsync());
         }
 
         [HttpDelete("{Email}")]
         public async Task<ActionResult<List<Client>>> Delete(String Email)
         {
-            var client = clients.Find(client => client.Email == Email);
+            var client = await _context.Clients.FindAsync(Email);
             if (client == null)
                 return BadRequest("Client not found.");
 
-            clients.Remove(client);
-            return Ok(clients);
+            _context.Clients.Remove(client);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Clients.ToListAsync());
         }
-
-
 
         }
 }
