@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 
 namespace TechnicalCase_PBTech.Controllers
 {
@@ -16,13 +17,13 @@ namespace TechnicalCase_PBTech.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Client>>> Get()
+        public async Task<ActionResult<IEnumerable<Client>>> GetClients()
         {
             return Ok(await _context.Clients.ToListAsync());
         }
 
         [HttpGet("{Email}")]
-        public async Task<ActionResult<List<Client>>> Get(String Email)
+        public async Task<ActionResult<List<Client>>> GetClient(String Email)
         {
             var client = await _context.Clients.FindAsync(Email);
             if (client == null)
@@ -33,29 +34,32 @@ namespace TechnicalCase_PBTech.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Client>>> AddClient(Client client)
         {
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(client.Email);
+            if (!match.Success)
+                return BadRequest("E-mail not allowed.");
+
             _context.Clients.Add(client);
             await _context.SaveChangesAsync();
 
             return Ok(await _context.Clients.ToListAsync());
         }
 
-        [HttpPut]
-        public async Task<ActionResult<List<Client>>> UpdateClient(Client request)
+        [HttpPut("{Email}")]
+        public async Task<ActionResult<List<Client>>> UpdateClient(String Email, Client request)
         {
-            var client = await _context.Clients.FindAsync(request.Email);
+            var client = await _context.Clients.FindAsync(Email);
             if (client == null)
                 return BadRequest("Client not found.");
 
-            client.Name = request.Name;
-            client.Email = request.Email;
-
-            await _context.SaveChangesAsync();
+            await DeleteClient(Email);
+            await AddClient(request);
 
             return Ok(await _context.Clients.ToListAsync());
         }
 
         [HttpDelete("{Email}")]
-        public async Task<ActionResult<List<Client>>> Delete(String Email)
+        public async Task<ActionResult<List<Client>>> DeleteClient(String Email)
         {
             var client = await _context.Clients.FindAsync(Email);
             if (client == null)
