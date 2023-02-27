@@ -1,0 +1,5 @@
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\obj\Debug\net6.0\TechnicalCase-PBTechTests.csproj.AssemblyReference.cache
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\obj\Debug\net6.0\TechnicalCase-PBTechTests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\obj\Debug\net6.0\TechnicalCase-PBTechTests.AssemblyInfoInputs.cache
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\obj\Debug\net6.0\TechnicalCase-PBTechTests.AssemblyInfo.cs
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\obj\Debug\net6.0\TechnicalCase-PBTechTests.csproj.CoreCompileInputs.cache

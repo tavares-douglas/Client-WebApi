@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vwG2Z4n8EOexou/5LJ5VgtyVl/Hp3A74q41V/EyT+YbNJ2oKNkYO+aAgLzogDy/ZoG1CCXW2DXlHFoup8kjqQA==",
+  "dgSpecHash": "khQwT4XTIYnh39dCiE/xcfY1p6mY/E59KfHouC+YIn9HJWg7Xfy0+O7UkteSEQ6LmmIiS+6+HfN3pguENpYFjw==",
   "success": true,
   "projectFilePath": "C:\\Users\\douglas.tavares\\source\\repos\\TechnicalCase-PBTech\\TechnicalCase-PBTech\\TechnicalCase-PBTech.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "C:\\Users\\douglas.tavares\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.3\\microsoft.entityframeworkcore.abstractions.7.0.3.nupkg.sha512",
     "C:\\Users\\douglas.tavares\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.3\\microsoft.entityframeworkcore.analyzers.7.0.3.nupkg.sha512",
     "C:\\Users\\douglas.tavares\\.nuget\\packages\\microsoft.entityframeworkcore.design\\7.0.3\\microsoft.entityframeworkcore.design.7.0.3.nupkg.sha512",
+    "C:\\Users\\douglas.tavares\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\7.0.3\\microsoft.entityframeworkcore.inmemory.7.0.3.nupkg.sha512",
     "C:\\Users\\douglas.tavares\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.3\\microsoft.entityframeworkcore.relational.7.0.3.nupkg.sha512",
     "C:\\Users\\douglas.tavares\\.nuget\\packages\\microsoft.entityframeworkcore.relational.design\\1.1.6\\microsoft.entityframeworkcore.relational.design.1.1.6.nupkg.sha512",
     "C:\\Users\\douglas.tavares\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\7.0.3\\microsoft.entityframeworkcore.sqlserver.7.0.3.nupkg.sha512",

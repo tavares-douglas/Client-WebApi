@@ -10,7 +10,7 @@ namespace TechnicalCase_PBTech.Controllers
     public class ClientController : ControllerBase
     {   
         private readonly DataContext _context;
- 
+
         public ClientController(DataContext context)
         {
             _context = context;

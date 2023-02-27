@@ -41,7 +41,7 @@ namespace TechnicalCase_PBTech.Tests.Controllers
             dataContext.Add(clients);
             ClientController clientController = new ClientController(dataContext);
 
-            String nonExistingClientToBeDeleted = "brettmaher@cowboys.com");
+            String nonExistingClientToBeDeleted = "brettmaher@cowboys.com";
             var queryResult = clientController.GetClient(nonExistingClientToBeDeleted);
             Assert.Equals(queryResult, "Client not found.");
         }
