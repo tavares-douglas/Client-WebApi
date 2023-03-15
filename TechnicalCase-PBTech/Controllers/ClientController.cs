@@ -2,27 +2,36 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
+using TechnicalCase_PBTech.Interfaces;
+using TechnicalCase_PBTech.Models;
 
 namespace TechnicalCase_PBTech.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientController : ControllerBase
-    {   
-        private readonly DataContext _context;
-
-        public ClientController(DataContext context)
+    public class ClientController : Controller
+    {
+        private readonly IClientRepository _clientRepository;
+        public ClientController(IClientRepository clientRepository)
         {
-            _context = context;
+            _clientRepository = clientRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Client>>> GetClients()
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Client>))]
+        public IActionResult GetClients()
         {
-            return Ok(await _context.Clients.ToListAsync());
+            var clients = _clientRepository.GetClients();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(clients);
         }
 
         [HttpGet("{Email}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Client>))]
+        [ProducesResponseType(400)]
         public async Task<ActionResult<List<Client>>> GetClient(String Email)
         {
             var client = await _context.Clients.FindAsync(Email);
@@ -30,6 +39,7 @@ namespace TechnicalCase_PBTech.Controllers
                 return BadRequest("Client not found.");
             return Ok(client);
         }
+        /*
 
         [HttpPost]
         public async Task<ActionResult<List<Client>>> AddClient(Client client)
@@ -69,7 +79,7 @@ namespace TechnicalCase_PBTech.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(await _context.Clients.ToListAsync());
-        }
+        }*/
 
-        }
+    }
 }

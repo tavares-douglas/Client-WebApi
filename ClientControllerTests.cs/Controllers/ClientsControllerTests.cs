@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TechnicalCase_PBTech.Controllers;
 using TechnicalCase_PBTech.Data;
+using TechnicalCase_PBTech.Models;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace TechnicalCase_PBTech.Tests.Controllers

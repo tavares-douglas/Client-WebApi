@@ -21,7 +21,7 @@ namespace TechnicalCase_PBTech.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TechnicalCase_PBTech.Client", b =>
+            modelBuilder.Entity("TechnicalCase_PBTech.Models.Client", b =>
                 {
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(450)");

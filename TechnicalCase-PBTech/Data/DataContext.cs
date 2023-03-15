@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TechnicalCase_PBTech.Models;
 
 namespace TechnicalCase_PBTech.Data
 {
