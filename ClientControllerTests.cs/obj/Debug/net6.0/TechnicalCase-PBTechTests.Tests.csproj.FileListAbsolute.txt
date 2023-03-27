@@ -169,3 +169,13 @@ C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests
 C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
 C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\xunit.runner.utility.netcoreapp10.dll
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\FluentAssertions.dll
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\xunit.abstractions.dll
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\xunit.assert.dll
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\xunit.core.dll
+C:\Users\douglas.tavares\source\repos\TechnicalCase-PBTech\ClientControllerTests.cs\bin\Debug\net6.0\xunit.execution.dotnet.dll

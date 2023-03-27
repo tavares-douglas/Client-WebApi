@@ -1,7 +1,10 @@
-﻿using Azure.Core;
+﻿using AutoMapper;
+using Azure.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TechnicalCase_PBTech.Dto;
 using TechnicalCase_PBTech.Interfaces;
 using TechnicalCase_PBTech.Models;
 
@@ -12,74 +15,92 @@ namespace TechnicalCase_PBTech.Controllers
     public class ClientController : Controller
     {
         private readonly IClientRepository _clientRepository;
-        public ClientController(IClientRepository clientRepository)
+        private readonly IMapper _mapper;
+
+        public ClientController(IClientRepository clientRepository, IMapper mapper)
         {
             _clientRepository = clientRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Client>))]
         public IActionResult GetClients()
         {
-            var clients = _clientRepository.GetClients();
+            var clients = _mapper.Map<List<ClientDto>>(_clientRepository.GetClients());
 
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             return Ok(clients);
         }
 
         [HttpGet("{Email}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Client>))]
+        [ProducesResponseType(200, Type = typeof(Client))]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<List<Client>>> GetClient(String Email)
+        public IActionResult GetClient(String Email)
         {
-            var client = await _context.Clients.FindAsync(Email);
-            if (client == null)
-                return BadRequest("Client not found.");
+            if (!_clientRepository.ClientExists(Email)) return NotFound();
+
+            var client = _mapper.Map<ClientDto>(_clientRepository.GetClient(Email));
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             return Ok(client);
         }
-        /*
 
         [HttpPost]
-        public async Task<ActionResult<List<Client>>> AddClient(Client client)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateClient([FromBody] ClientDto clientCreate)
         {
-            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match match = regex.Match(client.Email);
-            if (!match.Success)
-                return BadRequest("E-mail not allowed.");
+            if (clientCreate == null) return BadRequest(ModelState);
 
-            _context.Clients.Add(client);
-            await _context.SaveChangesAsync();
+            var clients = _clientRepository.GetClientTrimToUpper(clientCreate);
+     
+            if(clients != null) return StatusCode(422, "Client already exists");
 
-            return Ok(await _context.Clients.ToListAsync());
+            if(!_clientRepository.ValidateEmail(clientCreate.Email)) return StatusCode(415, "E-mail not allowed.");
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var clientMap = _mapper.Map<Client>(clientCreate);
+            if(!_clientRepository.CreateClient(clientMap)) return StatusCode(500, "Something went wrong while saving.");
+
+            return Ok("Successfully created.");
         }
 
         [HttpPut("{Email}")]
-        public async Task<ActionResult<List<Client>>> UpdateClient(String Email, Client request)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateClient(string Email, [FromBody]ClientDto updatedClient)
         {
-            var client = await _context.Clients.FindAsync(Email);
-            if (client == null)
-                return BadRequest("Client not found.");
+            if (!_clientRepository.ClientExists(Email)) return NotFound();
 
-            await DeleteClient(Email);
-            await AddClient(request);
+            if(!_clientRepository.ValidateEmail(updatedClient.Email)) return StatusCode(415, "E-mail not allowed.");
 
-            return Ok(await _context.Clients.ToListAsync());
+            DeleteClient(Email);
+            CreateClient(updatedClient);
+
+            return NoContent();
         }
 
         [HttpDelete("{Email}")]
-        public async Task<ActionResult<List<Client>>> DeleteClient(String Email)
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteClient(String Email)
         {
-            var client = await _context.Clients.FindAsync(Email);
-            if (client == null)
-                return BadRequest("Client not found.");
+            if (!_clientRepository.ClientExists(Email)) return NotFound();
 
-            _context.Clients.Remove(client);
-            await _context.SaveChangesAsync();
+            var clientToBeDeleted = _clientRepository.GetClient(Email);
 
-            return Ok(await _context.Clients.ToListAsync());
-        }*/
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (!_clientRepository.DeleteClient(clientToBeDeleted)) ModelState.AddModelError("", "Something went wrong.");
+
+            return NoContent();
+        }
 
     }
 }

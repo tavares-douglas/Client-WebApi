@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "m/LvpTIE6iub+xhjURjjlaMleEnYmzOZ/mSvxENNHBYrkTVonAWvu0mtuRAb5HTslaX57Q0jAQ2tne6UXhP1JQ==",
+  "dgSpecHash": "He1GoSP1SFVTiOLNQNvqFOMAJNdBERjR1nadAcjmEinxSQG8Tj1+z2BW2UfqlxCi9B/9GTeWZPnU+QVkOboabw==",
   "success": true,
   "projectFilePath": "C:\\Users\\douglas.tavares\\source\\repos\\TechnicalCase-PBTech\\TechnicalCase-PBTech\\TechnicalCase-PBTech.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\douglas.tavares\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\douglas.tavares\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\douglas.tavares\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\douglas.tavares\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\douglas.tavares\\.nuget\\packages\\castle.core\\4.3.1\\castle.core.4.3.1.nupkg.sha512",

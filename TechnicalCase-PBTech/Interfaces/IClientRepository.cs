@@ -1,4 +1,5 @@
-﻿using TechnicalCase_PBTech.Models;
+﻿using TechnicalCase_PBTech.Dto;
+using TechnicalCase_PBTech.Models;
 
 namespace TechnicalCase_PBTech.Interfaces
 {
@@ -6,5 +7,12 @@ namespace TechnicalCase_PBTech.Interfaces
     {
         ICollection<Client> GetClients();
         Client GetClient(string Email);
+        bool ClientExists(string Email);
+        bool CreateClient(Client client);
+        bool UpdateClient(Client client);
+        bool DeleteClient(Client client);
+        bool Save();
+        bool ValidateEmail(string Email);
+        Client GetClientTrimToUpper(ClientDto clientDto);
     }
 }
